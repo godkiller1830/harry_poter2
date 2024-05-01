@@ -5,7 +5,9 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import com.kenstarry.harrypotter.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,8 +40,9 @@ fun HomeTopBar(
 
             IconButton(onClick = onMore) {
                 Icon(
-                    imageVector = Icons.Outlined.MoreVert,
-                    contentDescription = "More icon"
+                    painter = painterResource(id = R.drawable.ai_icon),
+                    contentDescription = "More icon",
+                    tint = androidx.compose.ui.graphics.Color.Unspecified
                 )
             }
         }

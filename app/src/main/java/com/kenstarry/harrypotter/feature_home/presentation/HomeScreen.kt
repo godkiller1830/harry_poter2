@@ -1,5 +1,6 @@
 package com.kenstarry.harrypotter.feature_home.presentation
 
+import android.content.Intent
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -13,10 +14,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import com.canopas.lib.showcase.IntroShowCaseScaffold
+import com.kenstarry.harrypotter.AIassistant.ChatActivity
 import com.kenstarry.harrypotter.core.domain.model.BottomSheetEvents
 import com.kenstarry.harrypotter.core.domain.model.CharacterModel
 import com.kenstarry.harrypotter.core.domain.model.CoreEvents
@@ -31,6 +35,7 @@ import com.kenstarry.harrypotter.navigation.Direction
 import com.kenstarry.harrypotter.navigation.screens.Screens
 import kotlinx.coroutines.CoroutineScope
 
+
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -40,7 +45,7 @@ fun HomeScreen(
     state: ModalBottomSheetState,
     scope: CoroutineScope
 ) {
-
+    val context = LocalContext.current
     val direction = Direction(mainNavHostController)
     val directionInner = Direction(navHostController)
     val lifeCyclerOwner = LocalLifecycleOwner.current
@@ -129,7 +134,9 @@ fun HomeScreen(
                             //   change screen to implement search
                             isSearching = true
                         },
-                        onMore = {}
+                        onMore = {
+                            context.startActivity(Intent(context, ChatActivity::class.java))
+                        }
                     )
                 }
             ) { contentPadding ->
